@@ -3,6 +3,7 @@ import { Input } from "@src/components/ui/input";
 import { Label } from "@src/components/ui/label";
 import { readStorage, useStorage } from "@src/hooks/useStorage";
 import { useEffect, useState } from "react";
+import WishlistItem from "./components/wishlist-item";
 
 export default function Popup() {
   // Local UI state
@@ -26,7 +27,9 @@ export default function Popup() {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const newValue = form["server_input"].value;
+    const newValue = form["server_input"].value.endsWith("/")
+      ? form["server_input"].value.slice(0, -1)
+      : form["server_input"].value;
 
     // Sets on the client
     setUiServer(newValue); // UI State
@@ -35,23 +38,32 @@ export default function Popup() {
     // Sets on the server
 
     // DEBUG
-    console.log("[DEBUG] Server set to:", newValue);
+    console.log(`[DEBUG] Server set to: ${newValue}/`);
   }
 
   return (
     <>
-      <Label>Server:</Label>
+      <Label>
+        {uiServer
+          ? "🟢 Server set to: " + uiServer + "/"
+          : "🔴 Server not set yet."}
+      </Label>
       <form
         className="flex flex-row"
         onSubmit={(e) => {
           handleSetServer(e);
         }}>
-        <Input className="flex-1" name="server_input" />
+        <Input
+          className="flex-1"
+          name="server_input"
+          placeholder="https://api.example.com/"
+        />
         <Button>Submit</Button>
       </form>
-      <Label>
-        Server set as:<span>{uiServer}</span>
-      </Label>
+
+      <div className="flex justify-center w-full">
+        <Button>View Wishlist</Button>
+      </div>
     </>
   );
 }
