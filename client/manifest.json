@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Aliexpress Wishlist",
-  "description": "Saves aliexpress items into a custom wishlist.",
+  "name": "template-name",
+  "description": "template-description",
   "options_ui": {
     "page": "src/pages/options/index.html"
   },

@@ -3,7 +3,6 @@ import { Input } from "@src/components/ui/input";
 import { Label } from "@src/components/ui/label";
 import { readStorage, useStorage } from "@src/hooks/useStorage";
 import { useEffect, useState } from "react";
-import WishlistItem from "./components/wishlist-item";
 
 export default function Popup() {
   // Local UI state
@@ -60,10 +59,6 @@ export default function Popup() {
         />
         <Button>Submit</Button>
       </form>
-
-      <div className="flex justify-center w-full">
-        <Button>View Wishlist</Button>
-      </div>
     </>
   );
 }
